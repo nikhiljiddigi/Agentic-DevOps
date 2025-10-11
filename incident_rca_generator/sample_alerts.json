@@ -1,0 +1,21 @@
+{
+  "id": "INC-2025-046",
+  "service": "payments-service",
+  "duration": "42 minutes",
+  "alerts": [
+    "CrashLoopBackOff in payments-svc-8fd91",
+    "Database timeout on order-db",
+    "High CPU usage in payments-node",
+    "503 errors from checkout API"
+  ],
+  "logs": [
+    "[ERROR] DB_CONN timeout after 30s",
+    "[ERROR] failed to reach checkout API",
+    "[WARN] retry attempts exceeded",
+    "[INFO] rollback to previous deployment succeeded"
+  ],
+  "commits": [
+    "commit 1d92f: migrated DB connection pool settings",
+    "commit 1d93a: added retry logic for checkout API"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "node": "ip-10-0-3-15",
+  "cpu": 93,
+  "memory": 89,
+  "latency_ms": 320,
+  "pod_restarts": 5,
+  "pod": "job-runner"
+}

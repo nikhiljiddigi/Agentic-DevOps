@@ -1,18 +1,20 @@
 # Agentic DevOps
 
-The concept of Agentic DevOps got introduced in Microsoft Build conference 2025. Agentic DevOps is a paradigm, not a product. It's accessible to all, regardless of your tech stack or tooling. Use AI-powered tools like Cursor, Windsurf, Claude Code, Continue, Cline, or open-source models like Llama 4, Mistral, DeepSeek, Qwen. Deploy on-prem with vLLM, SGLang, or in the cloud with AWS, GCP, Azure.
+The concept of Agentic DevOps got introduced in Microsoft Build conference 2024. Agentic DevOps is a paradigm, not a product. It's accessible to all, regardless of your tech stack or tooling. Use AI-powered tools like Cursor, Windsurf, Claude Code, Continue, Cline, or open-source models like Llama 4, Mistral, DeepSeek, Qwen. Deploy on-prem with vLLM, SGLang, or in the cloud with AWS, GCP, Azure.
 
 # Agentic DevOps with DSPy + MCP
 
-A comprehensive demonstration of Agentic DevOps using DSPy and Model Context Protocol (MCP). The convep
-
-This suite includes three specialized agents and a combined demo showcasing automated PR reviews, tech debt analysis, and incident response.
+A comprehensive demonstration of Agentic DevOps using DSPy and Model Context Protocol (MCP). This suite includes various specialized AI agents that automate various DevOps workflows and processes.
 
 ## 🎯 Features
 
-- **PR Review Agent**: Automated security analysis, documentation review, and impact assessment
-- **Tech Debt Agent**: Dependency analysis, code complexity scanning, and test coverage reporting
-- **Incident Response Agent**: Automated incident diagnosis, remediation, and reporting
+- **CI/CD Failure Explainer**: Analyzes pipeline failures and suggests remediation steps
+- **Incident RCA Generator**: Generates root cause analysis for production incidents  
+- **Infrastructure Anomaly Explainer**: Detects and explains infrastructure anomalies
+- **Pre-Reviewer**: Automated code review before human review
+- **Pre-Deploy Config Gate**: Validates deployment configurations before release
+- **Security Vulnerability Watcher**: Monitors and analyzes security vulnerabilities
+- **Tech Debt Analyzer**: Identifies and prioritizes technical debt
 
 ## 📋 Prerequisites
 
@@ -38,13 +40,32 @@ cd agentic-devops
 
 3. Install Python dependencies:
 ```bash
-pip install "agenspy[mcp]" dspy openai
+pip install -r requirements.txt
 ```
 
-4. Install Node.js dependencies:
-```bash
-npm install -g @modelcontextprotocol/server-github
-```
+Note: The main dependencies are:
+- `dspy-ai>=3.0.3` - DSPy framework for building language model pipelines
+- `openai>=2.0.0` - OpenAI API client
+- `python-dotenv>=0.2.0` - Environment variable management
+
+## 🚀 Quick Start
+
+1. **Set your OpenAI API key:**
+   ```bash
+   export OPENAI_API_KEY="your-openai-api-key-here"
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run any agent:** (example with CI/CD failure explainer)
+   ```bash
+   python cicd_failure_explainer/agent.py
+   ```
+
+That's it! The agents work with mock data by default, so you can explore their capabilities immediately.
 
 ## ⚙️ Configuration
 
@@ -66,57 +87,101 @@ OPENAI_API_KEY=your-openai-key
 GITHUB_TOKEN=your-github-token
 ```
 
-## 🖥️ Running Individual Demos
+## 🖥️ Running Individual Agents
 
-### PR Review Agent
+### CI/CD Failure Explainer
 ```bash
-python pr_review_agent.py
+python cicd_failure_explainer/agent.py
 ```
-This will analyze a sample PR and provide:
-- Security analysis
-- Documentation review
-- Implementation suggestions
+Analyzes CI/CD pipeline failures and provides:
+- Root cause analysis
+- Remediation suggestions
 - Impact assessment
 
-### Tech Debt Agent
+### Incident RCA Generator
 ```bash
-python tech_debt_agent.py
+python incident_rca_generator/agent.py
 ```
-This will scan a repository for:
-- Deprecated dependencies
-- Complex code modules
-- Test coverage gaps
+Generates comprehensive incident analysis including:
+- Root cause identification
+- Timeline reconstruction
+- Preventive measures
+
+### Infrastructure Anomaly Explainer
+```bash
+python infra_anamoly_explainer/agent.py
+```
+Detects and explains infrastructure issues:
+- Performance anomalies
+- Resource utilization patterns
+- System health insights
+
+### Pre-Reviewer
+```bash
+python pre_reviewer/agent.py
+```
+Automated code review providing:
+- Security vulnerability detection
+- Code quality analysis
+- Best practices recommendations
+
+### Pre-Deploy Config Gate
+```bash
+python predeploy_config_gate/agent.py
+```
+Validates deployment configurations:
+- Configuration syntax checking
+- Security policy compliance
+- Resource allocation validation
+
+### Security Vulnerability Watcher
+```bash
+python security_vulnerability_watcher/agent.py
+```
+Monitors security vulnerabilities:
+- Code vulnerability scanning
+- Dependency analysis
+- Security recommendations
+
+### Tech Debt Analyzer
+```bash
+python tech_debt/agent.py
+```
+Identifies technical debt:
+- Code complexity analysis
 - Refactoring opportunities
-
-### Incident Response Agent
-```bash
-python incident_response_agent.py
-```
-This will simulate incident handling with:
-- Automated diagnostics
-- Remediation attempts
-- Incident reporting
-- On-call notifications
-
-## 🎮 Running the Complete Demo
-
-```bash
-python agentic_devops_demo.py
-```
-
-This will run all three agents in sequence, demonstrating:
-1. PR review workflow
-2. Technical debt analysis
-3. Incident response simulation
+- Maintenance recommendations
 
 ## 📁 Project Structure
 
 ```
 agentic-devops/
-├── pr_review_agent.py      # PR review automation
-├── tech_debt_agent.py      # Technical debt analysis
-├── incident_response_agent.py  # Incident response automation
-└── README.md
+├── README.md                           # This file
+├── requirements.txt                    # Python dependencies
+├── sample_logs.txt                     # Sample CI/CD logs
+├── cicd_failure_explainer/            # CI/CD pipeline failure analysis
+│   ├── agent.py
+│   └── sample_logs.txt
+├── incident_rca_generator/             # Incident root cause analysis
+│   ├── agent.py
+│   └── sample_alerts.json
+├── infra_anamoly_explainer/           # Infrastructure anomaly detection
+│   ├── agent.py
+│   └── sample_metrics.json
+├── pre_reviewer/                       # Automated code review
+│   └── agent.py
+├── predeploy_config_gate/             # Deployment configuration validation
+│   ├── agent.py
+│   └── sample_manifest.yaml
+├── security_vulnerability_watcher/     # Security vulnerability monitoring
+│   ├── agent.py
+│   ├── requirements.txt
+│   └── sample_code.py
+├── shared/                            # Shared utilities
+│   ├── config.py                      # DSPy configuration
+│   └── mcp_client.py                  # Mock MCP client
+└── tech_debt/                         # Technical debt analysis
+    └── agent.py
 ```
 
 ## 🔑 API Keys and Permissions
@@ -128,7 +193,8 @@ agentic-devops/
 4. Create a new secret key
 5. Copy and set as `OPENAI_API_KEY`
 
-### GitHub Token
+### GitHub Token (Optional)
+For agents that integrate with GitHub repositories:
 1. Visit [GitHub Settings > Developer Settings](https://github.com/settings/tokens)
 2. Generate new token (classic)
 3. Select scopes:
@@ -136,6 +202,8 @@ agentic-devops/
    - `read:org`
    - `workflow`
 4. Copy and set as `GITHUB_TOKEN`
+
+Note: Most agents work with mock data and don't require a GitHub token for basic functionality.
 
 
 ## 🤝 Contributing
@@ -148,26 +216,33 @@ agentic-devops/
 
 ## ⚠️ Common Issues
 
-1. **MCP Server Connection Failed**
+1. **DSPy Import Errors**
    ```bash
-   # Check if server is running
-   ps aux | grep mcp
-   # Restart server
-   npx @modelcontextprotocol/server-github
+   # Install DSPy framework
+   pip install dspy-ai>=3.0.3
    ```
 
 2. **API Key Issues**
    ```bash
-   # Verify environment variables
+   # Verify environment variables (macOS/Linux)
    echo $OPENAI_API_KEY
-   echo $GITHUB_TOKEN
+   
+   # Set environment variable if missing
+   export OPENAI_API_KEY="your-api-key-here"
    ```
 
-3. **Dependencies Missing**
+3. **Model Configuration Errors**
+   - Ensure you're using `gpt-4o-mini` instead of `gpt-5` 
+   - GPT-5 requires specific parameters: `temperature=1.0` and `max_tokens >= 16000`
+
+4. **File Not Found Errors**
+   - Run agents from the project root directory
+   - Ensure sample data files exist in their respective directories
+
+5. **Dependencies Missing**
    ```bash
-   # Reinstall dependencies
+   # Reinstall all dependencies
    pip install -r requirements.txt
-   npm install -g @modelcontextprotocol/server-github
    ```
 
 ## 📝 License
