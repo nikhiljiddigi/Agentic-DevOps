@@ -44,7 +44,7 @@ def run_config_agent():
     mcp_client = MockMCPClient()
     agent = PreDeployAgent(mcp_client)
 
-    manifest_path = os.path.join(os.path.dirname(__file__), "sample_manifest.yaml")
+    manifest_path = os.path.join(os.path.dirname(__file__), "deploy.yaml")
     result = agent(manifest_path)
 
     print("\n✅ Pre-Deploy Validation Results:")

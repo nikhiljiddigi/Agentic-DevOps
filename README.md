@@ -4,17 +4,34 @@ The concept of Agentic DevOps got introduced in Microsoft Build conference 2024.
 
 # Agentic DevOps with DSPy + MCP
 
-A comprehensive demonstration of Agentic DevOps using DSPy and Model Context Protocol (MCP). This suite includes various specialized AI agents that automate various DevOps workflows and processes.
+A comprehensive demonstration of Agentic DevOps using DSPy and Model Context Protocol (MCP). This suite includes specialized AI agents that automate DevOps workflows across the entire software development lifecycle.
 
 ## 🎯 Features
 
 - **CI/CD Failure Explainer**: Analyzes pipeline failures and suggests remediation steps
 - **Incident RCA Generator**: Generates root cause analysis for production incidents  
 - **Infrastructure Anomaly Explainer**: Detects and explains infrastructure anomalies
-- **Pre-Reviewer**: Automated code review before human review
+- **PR Reviewer**: Automated code review before human review
 - **Pre-Deploy Config Gate**: Validates deployment configurations before release
 - **Security Vulnerability Watcher**: Monitors and analyzes security vulnerabilities
 - **Tech Debt Analyzer**: Identifies and prioritizes technical debt
+
+## 🚀 Workflow Stages
+
+This project demonstrates a complete Agentic DevOps pipeline across three key stages:
+
+### Stage 1: Pre-Commit (`--stage pr`)
+- **PR Reviewer**: Analyzes code changes for quality, security, and best practices
+- **Config Gate**: Validates deployment configurations and manifests
+- **Security Watcher**: Scans for vulnerabilities and security issues
+
+### Stage 2: Build & CI/CD (`--stage build`)  
+- **CI/CD Failure Explainer**: Diagnoses build and deployment failures
+
+### Stage 3: Post-Deploy (`--stage post`)
+- **Infrastructure Anomaly Explainer**: Monitors system performance and detects anomalies
+- **Incident RCA Generator**: Analyzes production incidents and generates root cause analysis
+- **Tech Debt Analyzer**: Identifies technical debt and maintenance opportunities
 
 ## 📋 Prerequisites
 
@@ -60,7 +77,19 @@ Note: The main dependencies are:
    pip install -r requirements.txt
    ```
 
-3. **Run any agent:** (example with CI/CD failure explainer)
+3. **Run the complete workflow:**
+   ```bash
+   # Pre-commit stage (PR review, config validation, security scanning)
+   python run_agentic_flow.py --stage pr
+   
+   # Build stage (CI/CD failure analysis)
+   python run_agentic_flow.py --stage build
+   
+   # Post-deploy stage (anomaly detection, incident response, tech debt analysis)
+   python run_agentic_flow.py --stage post
+   ```
+
+4. **Or run individual agents:**
    ```bash
    python cicd_failure_explainer/agent.py
    ```
@@ -116,9 +145,9 @@ Detects and explains infrastructure issues:
 - Resource utilization patterns
 - System health insights
 
-### Pre-Reviewer
+### PR Reviewer
 ```bash
-python pre_reviewer/agent.py
+python pr_reviewer/agent.py
 ```
 Automated code review providing:
 - Security vulnerability detection
@@ -157,8 +186,8 @@ Identifies technical debt:
 ```
 agentic-devops/
 ├── README.md                           # This file
-├── requirements.txt                    # Python dependencies
-├── sample_logs.txt                     # Sample CI/CD logs
+├── requirements.txt                    # Python dependencies  
+├── run_agentic_flow.py                # Master orchestrator script
 ├── cicd_failure_explainer/            # CI/CD pipeline failure analysis
 │   ├── agent.py
 │   └── sample_logs.txt
@@ -168,7 +197,7 @@ agentic-devops/
 ├── infra_anamoly_explainer/           # Infrastructure anomaly detection
 │   ├── agent.py
 │   └── sample_metrics.json
-├── pre_reviewer/                       # Automated code review
+├── pr_reviewer/                        # Automated code review
 │   └── agent.py
 ├── predeploy_config_gate/             # Deployment configuration validation
 │   ├── agent.py

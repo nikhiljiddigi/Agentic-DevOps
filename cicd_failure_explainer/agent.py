@@ -27,7 +27,7 @@ class CICDLogAgent(dspy.Module):
         print(f"\n🔍 Running CI/CD Failure Analysis for: {pipeline_id}")
 
         # Fetch mock logs
-        with open(os.path.join(os.path.dirname(__file__), "sample_logs.txt")) as f:
+        with open(os.path.join(os.path.dirname(__file__), "pipeline.log")) as f:
             logs = f.read()
 
         # Run predictors

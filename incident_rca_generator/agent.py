@@ -46,7 +46,7 @@ def run_rca_agent():
     mcp_client = MockMCPClient()
     agent = InfraRCAGeneratorAgent(mcp_client)
 
-    incident_path = os.path.join(os.path.dirname(__file__), "sample_alerts.json")
+    incident_path = os.path.join(os.path.dirname(__file__), "alerts.json")
     result = agent(incident_path)
 
     print("\n✅ Infra RCA Summary Report:")

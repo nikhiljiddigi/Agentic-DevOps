@@ -45,7 +45,7 @@ def interpret(findings, metrics):
 
 def run_anomaly_agent():
     base = os.path.dirname(__file__)
-    metrics_file = os.path.join(base, "sample_metrics.json")
+    metrics_file = os.path.join(base, "metrics.json")
     metrics = load_metrics(metrics_file)
 
     # print(f"\n🔍 Analyzing metrics from: {metrics_file}")
