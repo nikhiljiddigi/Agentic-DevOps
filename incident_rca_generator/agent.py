@@ -41,7 +41,7 @@ class InfraRCAGeneratorAgent(dspy.Module):
         )
 
 
-def main():
+def run_rca_agent():
     configure_lm()
     mcp_client = MockMCPClient()
     agent = InfraRCAGeneratorAgent(mcp_client)
@@ -66,4 +66,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run_rca_agent()

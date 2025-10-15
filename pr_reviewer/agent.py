@@ -27,7 +27,7 @@ class PRReviewAgent(dspy.Module):
 
     def forward(self, pr_url: str) -> Prediction:
         """Review a pull request and provide comprehensive analysis."""
-        print(f"🔍 Reviewing PR: {pr_url}")
+        # print(f"🔍 Reviewing PR: {pr_url}")
         
         # Define default values
         default_security = ["No security issues identified in the current codebase"]
@@ -78,7 +78,7 @@ class PRReviewAgent(dspy.Module):
                 risk_score=default_risk
             )
 
-def main():
+def run_pr_agent():
     """Run PR Review Agent demo."""
     github_token = os.getenv('GITHUB_TOKEN')
     openai_key = os.getenv('OPENAI_API_KEY')
@@ -98,7 +98,7 @@ def main():
     try:
         # Create and run agent
         agent = PRReviewAgent(mcp_client, github_token)
-        result = agent.forward("https://github.com/SuperagenticAI/SuperXLab/pull/1")
+        result = agent("https://github.com/Tejaswan/spring-boot-realworld-example-app/commit/9d968683cb4bad765aeaf0bc5a604849260802bf")
 
         print("\n📋 PR Review Results:")
         for key, value in result.items():
@@ -113,4 +113,4 @@ def main():
         print(f"Error during PR review: {str(e)}")
 
 if __name__ == "__main__":
-    main()
+    run_pr_agent()

@@ -43,7 +43,7 @@ def interpret(findings, metrics):
         recos.append("Inspect pod logs and readiness config.")
     return ("Unhealthy", " | ".join(causes), recos)
 
-def main():
+def run_anomaly_agent():
     base = os.path.dirname(__file__)
     metrics_file = os.path.join(base, "sample_metrics.json")
     metrics = load_metrics(metrics_file)
@@ -68,4 +68,4 @@ def main():
         print(f"  - {r}")
 
 if __name__ == "__main__":
-    main()
+    run_anomaly_agent()

@@ -39,7 +39,7 @@ class PreDeployAgent(dspy.Module):
         )
 
 
-def main():
+def run_config_agent():
     configure_lm()
     mcp_client = MockMCPClient()
     agent = PreDeployAgent(mcp_client)
@@ -61,4 +61,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run_config_agent()
