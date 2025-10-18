@@ -108,23 +108,3 @@ Resolution Time: <estimate like '30m', '2h', '1 day'>
             return str(resp)
         except Exception as e:
             return f"[Gemini error: {e}]"
-
-
-# ---------------------------------------------------------------------- #
-# Local quick test
-# ---------------------------------------------------------------------- #
-if __name__ == "__main__":
-    helper = DSPyHelper()
-    title = "High CPU usage on worker node"
-    body = (
-        "Prometheus alert: CPU usage above 95% for 10m on worker-3.\n"
-        "Java process using 320% CPU; pods restarting with GC overhead errors."
-    )
-    kb = "KB: High CPU Usage — verify CPU limits and JVM heap size."
-    ts = "2025-10-18T14:45:00Z"
-
-    result = helper.run_reasoning(title, body, kb, ts)
-
-    print("🧠 Reasoning Output\n------------------")
-    for k, v in result.items():
-        print(f"{k}: {v}")
